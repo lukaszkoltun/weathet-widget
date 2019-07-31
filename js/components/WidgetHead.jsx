@@ -31,38 +31,57 @@ const WidgetHeadList = styled.li`
     }
 `;
 
-
 class WidgetHead extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            city: ''
+        }
+    }
+    componentDidMount(){
+        fetch(`http://dev-weather-api.azurewebsites.net/api/city`)
+        .then(resp => resp.json())
+        .then(arr => this.getCity(arr));
+    }
+    getCity(arr){
+        for(let i = 0; i<arr.length; i++){
+            if(arr[i].id == this.props.data.cityId){
+                this.setState({city: arr[i].name});
+                break;
+            }
+        }
+    }
     render(){
+        const src = `../Assets/${this.props.data.type}.png`;
         return<Container>
-                <Row>
-                    <Col>
-                        <Header>New York, NY</Header>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <P>Tuesday, 16 Aprill 89th</P>
-                        <P>Deszczowo</P>
-                    </Col>
-                </Row>
-                <Row>
-                   <Col xs={6}>
-                        <div>
-                            <img src='../Assets/cloudy.png'/>
-                            <Temp>34<sup>&deg;F</sup></Temp>
-                        </div>
-                   </Col>
-                   <Col xs={6}><span>
-                       <ul>
-                           <WidgetHeadList>Precitipation: 100%</WidgetHeadList>
-                           <WidgetHeadList>Humidity: 97%</WidgetHeadList>
-                           <WidgetHeadList>Wind: 4 Mph SW</WidgetHeadList>
-                           <WidgetHeadList>Pollen Count: 36</WidgetHeadList>
-                       </ul>
-                    </span></Col>
-                </Row>
-            </Container>
+            <Row>
+                <Col>
+                     <Header>{this.state.city}</Header>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <P>Tuesday, {this.props.data.date}</P>
+                    <P>{this.props.data.type}</P>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={6}>
+                    <div>
+                        <img src={src} alt="cloud"/>
+                        <Temp>{this.props.data.temperature}<sup>&deg;F</sup></Temp>
+                    </div>
+                </Col>
+                <Col xs={6}><span>
+                    <ul>
+                        <WidgetHeadList>Precitipation: {this.props.data.precipitation}</WidgetHeadList>
+                        <WidgetHeadList>Humidity: {this.props.data.humidity}%</WidgetHeadList>
+                        <WidgetHeadList>Wind: {this.props.data.windInfo.speed}Mph {this.props.data.windInfo.direction}</WidgetHeadList>
+                        <WidgetHeadList>Pollen Count: {this.props.data.pollenCount}</WidgetHeadList>
+                    </ul></span>
+                </Col>
+            </Row>
+        </Container>
     }
 }
 
