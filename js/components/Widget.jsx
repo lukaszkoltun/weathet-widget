@@ -11,14 +11,15 @@ const StyledWraper = styled.div`
 `;
 
 const date = new Date();
-console.log(date);
-const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDay()}`;
+const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+const day = date.getDay();
+
 
 class Widget extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            id: 1,
+            id: 2,
             obj: []
         }
     }
@@ -33,8 +34,8 @@ class Widget extends React.Component{
             return <div>Loading...</div>
         }
         return <StyledWraper>
-                <WidgetHead data={this.state.obj[0]}/>
-                <WidgetDayList />
+                <WidgetHead data={this.state.obj[0]} day={day} date={date.getDate()} month={date.getMonth()}/>
+                <WidgetDayList data={this.state.obj} day={day} />
             </StyledWraper>
     }
 }

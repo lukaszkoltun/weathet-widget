@@ -31,6 +31,10 @@ const WidgetHeadList = styled.li`
     }
 `;
 
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+const sup = ['st','nd','rd','th'];
+
 class WidgetHead extends React.Component{
     constructor(props){
         super(props);
@@ -51,6 +55,14 @@ class WidgetHead extends React.Component{
             }
         }
     }
+    getTheTip(num){
+        num = num.toString();
+        num = num[num.length-1];
+        if(num == 1) return 'st';
+        else if(num == 2) return 'nd';
+        else  if(num == 3) return 'rd';
+        else return 'th';
+    }
     render(){
         const src = `../Assets/${this.props.data.type}.png`;
         return<Container>
@@ -61,14 +73,14 @@ class WidgetHead extends React.Component{
             </Row>
             <Row>
                 <Col>
-                    <P>Tuesday, {this.props.data.date}</P>
+                    <P>{days[this.props.day]}, {months[this.props.month]} {this.props.date}{this.getTheTip(this.props.date)}</P>
                     <P>{this.props.data.type}</P>
                 </Col>
             </Row>
             <Row>
                 <Col xs={6}>
                     <div>
-                        <img src={src} alt="cloud"/>
+                        <img src={src} alt={this.props.data.type}/>
                         <Temp>{this.props.data.temperature}<sup>&deg;F</sup></Temp>
                     </div>
                 </Col>
