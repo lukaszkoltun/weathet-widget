@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {createGlobalStyle} from 'styled-components';
 import Widget from './components/Widget.jsx';
 
+
 const GlobalStyle = createGlobalStyle`
     *,*::before,*::after{
         padding: 0;

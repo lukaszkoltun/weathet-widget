@@ -30,6 +30,9 @@ const WidgetHeadList = styled.li`
         font-size: 12px;
     }
 `;
+const BlackVal = styled.span`
+    color: black;
+`;
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -86,10 +89,10 @@ class WidgetHead extends React.Component{
                 </Col>
                 <Col xs={6}><span>
                     <ul>
-                        <WidgetHeadList>Precitipation: {this.props.data.precipitation}</WidgetHeadList>
-                        <WidgetHeadList>Humidity: {this.props.data.humidity}%</WidgetHeadList>
-                        <WidgetHeadList>Wind: {this.props.data.windInfo.speed}Mph {this.props.data.windInfo.direction}</WidgetHeadList>
-                        <WidgetHeadList>Pollen Count: {this.props.data.pollenCount}</WidgetHeadList>
+                        <WidgetHeadList>Precitipation: <BlackVal>{this.props.data.precipitation}</BlackVal></WidgetHeadList>
+                        <WidgetHeadList>Humidity: <BlackVal>{this.props.data.humidity}%</BlackVal></WidgetHeadList>
+                        <WidgetHeadList>Wind: <BlackVal>{this.props.data.windInfo.speed}Mph {this.props.data.windInfo.direction}</BlackVal></WidgetHeadList>
+                        <WidgetHeadList>Pollen Count: <BlackVal>{this.props.data.pollenCount}</BlackVal></WidgetHeadList>
                     </ul></span>
                 </Col>
             </Row>

@@ -6,6 +6,7 @@ const ListItem = styled.li`
     border-top: 1px solid gray;
     font-size:10px;
     padding-left: 5%;
+    min-height: 55px;
     @media (min-width: 275px){
         font-size: 12px;
     }
@@ -19,11 +20,16 @@ const ListItem = styled.li`
         display: inline-block;
         width: 25%;
         @media(min-width:530px){
+        font-size: 10px;
         display: block;
         width: 100%;
         }
+        :first-child{
+            @media(min-width: 530px){
+                font-size: 10px;
+            }
+        }
         :last-child{
-            border: 1px solid red;
             text-align: center;
             p{
                 @media(min-width:325px){
@@ -35,6 +41,7 @@ const ListItem = styled.li`
 `;
 
 
+
 class WidgetDayListItem extends Component{
     getDay(index, day, arr){
         if(index == 0) return 'Today';
@@ -42,7 +49,6 @@ class WidgetDayListItem extends Component{
         else return arr[index+day];
     }
     render(){
-        console.log(this.props.data);
         const src = `../Assets/${this.props.data.type}.png`;
         const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         return <ListItem>

@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import WidgetHead from './WidgetHead.jsx';
-import WidgetDayList from './WidgetDayList.jsx'
+import WidgetDayList from './WidgetDayList.jsx';
+
 
 
 const StyledWraper = styled.div`
     /* min-height: 257px; */
     max-width: 563px;
-    border: 1px solid gray;
+    -webkit-box-shadow: 5px 5px 12px 4px rgba(184,184,184,0.46);
+    -moz-box-shadow: 5px 5px 12px 4px rgba(184,184,184,0.46);
+    box-shadow: 5px 5px 12px 4px rgba(184,184,184,0.46);
 `;
 
 const date = new Date();
@@ -19,7 +22,7 @@ class Widget extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            id: 2,
+            id: 1,
             obj: []
         }
     }
@@ -33,10 +36,12 @@ class Widget extends React.Component{
         if(!this.state.obj[1]){
             return <div>Loading...</div>
         }
-        return <StyledWraper>
+        return<div>
+            <StyledWraper>
                 <WidgetHead data={this.state.obj[0]} day={day} date={date.getDate()} month={date.getMonth()}/>
                 <WidgetDayList data={this.state.obj} day={day} />
             </StyledWraper>
+        </div>
     }
 }
 
