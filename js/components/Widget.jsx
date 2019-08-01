@@ -31,17 +31,14 @@ class Widget extends React.Component{
         .then(resp => resp.json())
         .then(data => this.setState({obj: data}));
     }
-
     render(){
         if(!this.state.obj[1]){
             return <div>Loading...</div>
         }
-        return<div>
-            <StyledWraper>
-                <WidgetHead data={this.state.obj[0]} day={day} date={date.getDate()} month={date.getMonth()}/>
+        return<StyledWraper>
+                <WidgetHead data={this.state.obj[0]} day={day} date={date.getDate()} month={date.getMonth()} city={this.props}/>
                 <WidgetDayList data={this.state.obj} day={day} />
             </StyledWraper>
-        </div>
     }
 }
 

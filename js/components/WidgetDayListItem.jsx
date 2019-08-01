@@ -20,7 +20,6 @@ const ListItem = styled.li`
         display: inline-block;
         width: 25%;
         @media(min-width:530px){
-        font-size: 10px;
         display: block;
         width: 100%;
         }
@@ -31,6 +30,9 @@ const ListItem = styled.li`
         }
         :last-child{
             text-align: center;
+            @media(min-width: 530px){
+                font-size: 10px;
+            }
             p{
                 @media(min-width:325px){
                     display:inline;
